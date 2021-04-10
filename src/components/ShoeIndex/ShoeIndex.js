@@ -52,6 +52,7 @@ const Wrapper = styled.div`
 
 const LeftColumn = styled.div`
   min-width: 248px;
+  padding-right: 32px;
 `;
 
 const BreadcrumbWrapper = styled.div`

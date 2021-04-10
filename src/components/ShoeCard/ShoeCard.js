@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 import { COLORS, WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
+import ShoeTag from '../ShoeTag';
 import Spacer from '../Spacer';
 
 const ShoeCard = ({
@@ -40,11 +41,15 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price variant={variant}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          <SalePrice>{variant === 'on-sale' ? formatPrice(salePrice) : null}</SalePrice>
         </Row>
+        <ShoeTagWrapper>
+          <ShoeTag variant={variant}/>
+        </ShoeTagWrapper>
       </Wrapper>
     </Link>
   );
@@ -58,6 +63,13 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
+  position: relative;
+`;
+
+const ShoeTagWrapper = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
 `;
 
 const ImageWrapper = styled.div`
@@ -82,7 +94,10 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  color: ${p => p.variant === 'on-sale' ? COLORS.gray[700] : COLORS.gray[900]};
+  text-decoration: ${p => p.variant === 'on-sale' ? 'line-through' : 'none'};
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};

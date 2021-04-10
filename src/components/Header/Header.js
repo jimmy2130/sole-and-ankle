@@ -47,6 +47,7 @@ const MainHeaderItems = styled.div`
 
 const LogoWrapper = styled.div`
   flex: 1;
+  margin-right: 16px;
 `
 
 const Spacer = styled.div`
